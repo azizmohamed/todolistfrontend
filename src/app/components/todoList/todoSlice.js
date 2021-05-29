@@ -1,4 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios';
+
+
+export const fetchTasks = createAsyncThunk(
+  'tasks/fetchTasks',
+  async () => {
+    const response = await axios.get(`https://todosgetc.azurewebsites.net/api/tasks`)
+    return response? response.data: []
+  }
+)
 
 export const todoSlice = createSlice({
   name: 'todos',
@@ -7,6 +17,9 @@ export const todoSlice = createSlice({
     todoItems: [],
   },
   reducers: {
+    tasksRetrieved: (state, {payload}) => {
+      state.todoItems =  payload;
+    },
     newItem: (state, {payload}) => {
       state.todoItems.push({
         description: payload.description,
@@ -27,9 +40,23 @@ export const todoSlice = createSlice({
       console.log("onDelete")
     }
   },
+  extraReducers: {
+    // Add reducers for additional action types here, and handle loading state as needed
+    [fetchTasks.fulfilled]: (state, action) => {
+      // Add user to the state array
+      state.todoItems = action.payload;
+    },
+    [fetchTasks.pending]: (state, action) => {
+      // Add user to the state array
+      //state.todoItems = action.payload;
+    },
+    [fetchTasks.rejected]: (state, action) => {
+      // Add user to the state array
+      //state.todoItems = action.payload;
+    }
+  }
 })
 
 // Action creators are generated for each case reducer function
-export const { newItem, completeItem, deleteItem, taskCompleted } = todoSlice.actions
-
+export const { newItem, completeItem, deleteItem, taskCompleted, tasksRetrieved } = todoSlice.actions
 export default todoSlice.reducer
