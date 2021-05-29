@@ -8,9 +8,9 @@ function App() {
       <header className="App-header">
         Todo List
       </header>
-      <body className="App-body">
+      <div className="App-body">
         <Todos/>
-      </body>
+      </div>
       
     </div>
   );

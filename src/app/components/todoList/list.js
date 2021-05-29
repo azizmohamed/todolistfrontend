@@ -1,13 +1,13 @@
 import './todos.css';
 import Item from './item.js';
+import { useSelector, useDispatch } from 'react-redux';
 
 function List() {
+  const todoItems = useSelector((state) => state.todos.todoItems)
   return (
-    <div className="List">
-      <Item/>
-      <Item/>
-      <Item/>
-    </div>
+    todoItems.map((item) => {
+      return <Item description={item.description}/>;
+    })
   );
 }
 

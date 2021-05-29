@@ -1,10 +1,10 @@
 import './todos.css';
 
-function Item() {
+function Item(props) {
   return (
     <div className="Item">
       <header className="Item-header">
-          Item
+          {props.description}
       </header>
     </div>
   );
