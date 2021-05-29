@@ -6,7 +6,7 @@ function List() {
   const todoItems = useSelector((state) => state.todos.todoItems)
   return (
     todoItems.map((item) => {
-      return <Item description={item.description}/>;
+      return <Item description={item.description} completed={item.completed} />;
     })
   );
 }

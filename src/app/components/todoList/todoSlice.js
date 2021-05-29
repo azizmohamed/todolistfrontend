@@ -9,13 +9,22 @@ export const todoSlice = createSlice({
   reducers: {
     newItem: (state, {payload}) => {
       state.todoItems.push({
-        description: payload.description
+        description: payload.description,
+        completed: false
       });
+    },
+    completeItem: (state, {payload}) => {
+      state.todoItems.forEach(item =>{
+        item.completed = payload.completed
+      });
+    },
+    deleteItem: (state, {payload}) => {
+      console.log("onDelete")
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { newItem } = todoSlice.actions
+export const { newItem, completeItem, deleteItem } = todoSlice.actions
 
 export default todoSlice.reducer
