@@ -21,7 +21,7 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            az storage blob upload-batch --account-name todoswebsite -d '$web' -s ./public
+            az storage blob upload-batch --account-name todoswebsite -d '$web' -s ./build
   # Azure logout 
     - name: logout
       run: |
