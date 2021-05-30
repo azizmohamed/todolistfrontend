@@ -28,6 +28,6 @@ This project was initiated be Create React App and to clone and extend its featu
 To make use of CI/CD, make sure you run yarn build step before you push your code.
 
 # Future enhancements
-## Yarn build step needs to be added to Github Actions workflow
-## Automated tests need to be added to frontend code
-## Some styling needed to enhance look and feel of the application
+- Yarn build step needs to be added to Github Actions workflow
+- Automated tests need to be added to frontend code
+- Some styling needed to enhance look and feel of the application
