@@ -20,6 +20,15 @@ export const createTask = createAsyncThunk(
   }
 )
 
+export const deleteTask = createAsyncThunk(
+  'tasks/createTask',
+  async (id) => {
+    await axios.delete(`https://todosgetc.azurewebsites.net/api/tasks/` + id)
+    const getResponse = await axios.get(`https://todosgetc.azurewebsites.net/api/tasks`)
+    return getResponse? getResponse.data: []
+  }
+)
+
 export const todoSlice = createSlice({
   name: 'todos',
   initialState: {
@@ -68,6 +77,15 @@ export const todoSlice = createSlice({
 
     },
     [createTask.rejected]: (state, action) => {
+      console.log(JSON.stringify( action.payload));
+    },
+    [deleteTask.fulfilled]: (state, action) => {
+      state.todoItems = action.payload;
+    },
+    [deleteTask.pending]: (state, action) => {
+
+    },
+    [deleteTask.rejected]: (state, action) => {
       console.log(JSON.stringify( action.payload));
     }
   }

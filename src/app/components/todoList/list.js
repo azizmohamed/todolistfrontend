@@ -14,8 +14,8 @@ function List() {
 
   return (
     todoItems.map((item) => {
-      return <div>
-          <Task description={item.description} completed={item.completed}></Task>
+      return <div key = {item.id}>
+          <Task description={item.description} completed={item.completed} id={item.id}></Task>
         </div>
     })
   );
