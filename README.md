@@ -1,7 +1,7 @@
 # Todo list for code test purpose.
-Public url: https://todoswebsite.z13.web.core.windows.net/
-CI/CD is implemented using GitHub Actions
-Website is hosted in Azure Static Websites offering in Azure Storage Account
+- Public url: https://todoswebsite.z13.web.core.windows.net/
+- CI/CD is implemented using GitHub Actions
+- Website is hosted in Azure Static Websites offering in Azure Storage Account
 
 # Create React App
 
