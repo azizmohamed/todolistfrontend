@@ -1,0 +1,49 @@
+.Todo-Item {
+    min-width: 40vw;
+    display: flex;
+    flex-direction: row;
+    border: 0.5pt solid gray;
+    padding: 10px;
+  }
+
+  .Status-Input {
+    flex: 1;
+  }
+
+  .Text-Display {
+    flex: 8;
+    text-align: start;
+    font-family: Verdana;
+    font-size: small;
+  }
+  .Text-Display-Completed {
+    text-decoration: line-through;
+  }
+
+  .Delete-Icon {
+    flex: 1;
+  }
+
+
+  .New-Item {
+    min-width: 40vw;
+    min-height: 5vh;
+    display: flex;
+    flex-direction: row;
+    margin: 10pt;
+  }
+
+  .New-Item-Text {
+    flex: 9;
+    text-align: start;
+    margin: 5pt;
+  }
+
+  .Add-Button {
+      flex: 1;
+      margin: 5pt;
+      font-size: large;
+      font-weight: 600;
+      background-color: royalblue;
+      color: white;
+  }

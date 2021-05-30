@@ -10,7 +10,6 @@ function Todos() {
     <LoadingOverlay
       active={loading}
       spinner
-      text='Loading your content...'
       >
       <div className="Item">
         <NewItem/>

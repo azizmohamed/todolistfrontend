@@ -1,5 +1,5 @@
 import './todos.css';
-import { newItem, createTask } from './todoSlice'
+import { createTask } from './todoSlice'
 import { useDispatch } from 'react-redux'
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -13,17 +13,23 @@ export default function NewItem() {
       description: data.taskDesc
   }))}
 
-  console.log(watch("taskDesc")); // watch input value by passing the name of it
+  console.log(watch("taskDesc")); 
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* include validation with required or other standard HTML validation rules */}
-      <input defaultValue="New Task" {...register("taskDesc", { required: true })} />
-      {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>Enter task description</span>}
+
+    <form 
+      onSubmit={handleSubmit(onSubmit)}
+      className="New-Item"
+      >
+      <input 
+        placeholder="New Task" 
+        className="New-Item-Text"
+        {...register("taskDesc", { required: true })} />
       
-      <input type="submit" />
+      <input 
+        className="Add-Button"
+        type="submit" 
+        value="Add" />
     </form>
   );
 }
