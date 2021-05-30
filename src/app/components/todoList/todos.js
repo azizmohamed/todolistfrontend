@@ -1,16 +1,23 @@
 import './todos.css';
 import List from './list.js';
 import NewItem from './newItem';
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from './todoSlice'
+import LoadingOverlay from 'react-loading-overlay';
+import { useSelector } from 'react-redux';
 
 function Todos() {
-  return (
-    <div className="Item">
-      <NewItem/>
-      <List/>
-    </div>
-  );
+  const loading = useSelector((state) => state.todos.loading);
+  return(
+    <LoadingOverlay
+      active={loading}
+      spinner
+      text='Loading your content...'
+      >
+      <div className="Item">
+        <NewItem/>
+        <List/>
+      </div>
+    </LoadingOverlay>);
+
 }
 
 export default Todos;
