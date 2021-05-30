@@ -14,7 +14,7 @@ export const fetchTasks = createAsyncThunk(
 export const createTask = createAsyncThunk(
   'tasks/createTask',
   async (task) => {
-    const createResponse = await axios.post(`https://todosgetc.azurewebsites.net/api/tasks`, task)
+    await axios.post(`https://todosgetc.azurewebsites.net/api/tasks`, task)
     const getResponse = await axios.get(`https://todosgetc.azurewebsites.net/api/tasks`)
     return getResponse? getResponse.data: []
   }
