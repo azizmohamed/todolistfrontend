@@ -21,9 +21,18 @@ export const createTask = createAsyncThunk(
 )
 
 export const deleteTask = createAsyncThunk(
-  'tasks/createTask',
+  'tasks/deleteTask',
   async (id) => {
     await axios.delete(`https://todosgetc.azurewebsites.net/api/tasks/` + id)
+    const getResponse = await axios.get(`https://todosgetc.azurewebsites.net/api/tasks`)
+    return getResponse? getResponse.data: []
+  }
+)
+
+export const completeTask = createAsyncThunk(
+  'tasks/completeTask',
+  async (task) => {
+    await axios.put(`https://todosgetc.azurewebsites.net/api/tasks/` + task.id, task)
     const getResponse = await axios.get(`https://todosgetc.azurewebsites.net/api/tasks`)
     return getResponse? getResponse.data: []
   }
@@ -86,6 +95,15 @@ export const todoSlice = createSlice({
 
     },
     [deleteTask.rejected]: (state, action) => {
+      console.log(JSON.stringify( action.payload));
+    },
+    [completeTask.fulfilled]: (state, action) => {
+      state.todoItems = action.payload;
+    },
+    [completeTask.pending]: (state, action) => {
+
+    },
+    [completeTask.rejected]: (state, action) => {
       console.log(JSON.stringify( action.payload));
     }
   }

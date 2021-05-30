@@ -1,6 +1,6 @@
 import './todos.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { taskCompleted, deleteTask} from './todoSlice'
+import { completeTask, deleteTask} from './todoSlice'
 
 function Task(props) {
   const dispatch = useDispatch();
@@ -8,7 +8,11 @@ function Task(props) {
     <div >
         <input checked={props.completed} 
             type="checkbox"
-            onChange={() => dispatch(taskCompleted())}></input>
+            onChange={() => dispatch(completeTask({
+              description : props.description,
+              id: props.id,
+              completed: !props.completed
+            }))}></input>
         <span>{props.description}</span>
         <button onClick={() => dispatch(deleteTask(props.id))}>Delete</button>
     </div>
