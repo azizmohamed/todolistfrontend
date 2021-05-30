@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 
 export const fetchTasks = createAsyncThunk(
@@ -10,11 +11,20 @@ export const fetchTasks = createAsyncThunk(
   }
 )
 
+export const createTask = createAsyncThunk(
+  'tasks/createTask',
+  async (task) => {
+    const createResponse = await axios.post(`https://todosgetc.azurewebsites.net/api/tasks`, task)
+    const getResponse = await axios.get(`https://todosgetc.azurewebsites.net/api/tasks`)
+    return getResponse? getResponse.data: []
+  }
+)
+
 export const todoSlice = createSlice({
   name: 'todos',
   initialState: {
     value: 0,
-    todoItems: [],
+    todoItems: []
   },
   reducers: {
     tasksRetrieved: (state, {payload}) => {
@@ -43,16 +53,22 @@ export const todoSlice = createSlice({
   extraReducers: {
     // Add reducers for additional action types here, and handle loading state as needed
     [fetchTasks.fulfilled]: (state, action) => {
-      // Add user to the state array
       state.todoItems = action.payload;
     },
     [fetchTasks.pending]: (state, action) => {
-      // Add user to the state array
-      //state.todoItems = action.payload;
+      
     },
     [fetchTasks.rejected]: (state, action) => {
-      // Add user to the state array
-      //state.todoItems = action.payload;
+      console.log(JSON.stringify( action.payload));
+    },
+    [createTask.fulfilled]: (state, action) => {
+      state.todoItems = action.payload;
+    },
+    [createTask.pending]: (state, action) => {
+
+    },
+    [createTask.rejected]: (state, action) => {
+      console.log(JSON.stringify( action.payload));
     }
   }
 })

@@ -1,5 +1,5 @@
 import './todos.css';
-import { newItem, updateItemDesc } from './todoSlice'
+import { newItem, createTask } from './todoSlice'
 import { useDispatch } from 'react-redux'
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -9,7 +9,7 @@ export default function NewItem() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const dispatch = useDispatch()
   const onSubmit = data => {
-    dispatch(newItem({
+    dispatch(createTask({
       description: data.taskDesc
   }))}
 
